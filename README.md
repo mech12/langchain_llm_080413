@@ -27,3 +27,17 @@
 ● ‘LLM을 이용해서 CSV 파일 분석’하기</br>
 ● ‘번역 서비스’ 만들기</br>
 ● ‘메일 작성기’ 만들기</br>
+
+
+conda create -n llm phthon=3.8
+conda env list
+conda activate llm
+conda env remove -n llm
+
+# 가상환경에서 주피터 노트북 설치
+pip install ipykernel
+# 가상환경에 커널 연결.
+python -m ipykernel install --user --name llm --display-name "llm"
+jupyter notebook
+
+!pip install langchain==0.0.350

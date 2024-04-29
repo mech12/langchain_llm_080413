@@ -1,50 +1,27 @@
 #!/usr/bin/env python
 # coding: utf-8
+#!pip install openai
+#!pip install tiktoken
+#!pip install streamlit-chat==0.1.1
+#!pip install streamlit==1.29.0
+#!pip install langchain==0.1.0
+#!pip install faiss-cpu==1.7.4
 
-# In[1]:
-
-
-#!pip install streamlit-chat
-
-
-# In[2]:
-
-
-#!pip install streamlit
-
-
-# In[3]:
-
-
-#!pip install langchain
-
-
-# In[4]:
-
-
-#!pip install faiss-cpu
-
-
-# In[5]:
-
-
+import tempfile
 import streamlit as st
+
 from streamlit_chat import message
+
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.chat_models import ChatOpenAI
 from langchain.chains import ConversationalRetrievalChain
 from langchain.vectorstores import FAISS
-import tempfile
 from langchain.document_loaders import PyPDFLoader
 
 import os
-os.environ["OPENAI_API_KEY"] = "sk-" #openai 키 입력
+# os.environ["OPENAI_API_KEY"] = "sk-" #openai 키 입력
 
 uploaded_file = st.sidebar.file_uploader("upload", type="pdf")
-
-
-# In[6]:
-
 
 if uploaded_file :
     with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
@@ -94,10 +71,3 @@ if uploaded_file :
             for i in range(len(st.session_state['generated'])):
                 message(st.session_state["past"][i], is_user=True, key=str(i) + '_user', avatar_style = "fun-emoji", seed = "Nala")
                 message(st.session_state["generated"][i], key=str(i), avatar_style = "bottts", seed = "Fluffy")
-
-
-# In[ ]:
-
-
-
-
